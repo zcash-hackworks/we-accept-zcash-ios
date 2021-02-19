@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,13 @@
 		0D5050AA25DFEFAC00E7A697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5050A925DFEFAC00E7A697 /* ContentView.swift */; };
 		0D5050AC25DFEFAD00E7A697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */; };
 		0D5050AF25DFEFAD00E7A697 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5050AE25DFEFAD00E7A697 /* Preview Assets.xcassets */; };
+		0D50519725E0583500E7A697 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50519625E0583500E7A697 /* Colors.swift */; };
+		0D50519A25E0591B00E7A697 /* ZcashBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50519925E0591B00E7A697 /* ZcashBackground.swift */; };
+		0D50519D25E0596B00E7A697 /* ZcashTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50519C25E0596B00E7A697 /* ZcashTextField.swift */; };
+		0D5051A225E0599800E7A697 /* Baseline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D50519F25E0599800E7A697 /* Baseline.swift */; };
+		0D5051A325E0599800E7A697 /* ZcashSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051A025E0599800E7A697 /* ZcashSymbol.swift */; };
+		0D5051A425E0599800E7A697 /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051A125E0599800E7A697 /* Ring.swift */; };
+		0D5051AE25E066E300E7A697 /* ZcashLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051AD25E066E300E7A697 /* ZcashLogo.swift */; };
 		1FCF89290175BCB5B4795603 /* Pods_accept_zcash_poc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */; };
 /* End PBXBuildFile section */
 
@@ -21,6 +28,13 @@
 		0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D5050AE25DFEFAD00E7A697 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0D5050B025DFEFAD00E7A697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D50519625E0583500E7A697 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		0D50519925E0591B00E7A697 /* ZcashBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashBackground.swift; sourceTree = "<group>"; };
+		0D50519C25E0596B00E7A697 /* ZcashTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashTextField.swift; sourceTree = "<group>"; };
+		0D50519F25E0599800E7A697 /* Baseline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baseline.swift; sourceTree = "<group>"; };
+		0D5051A025E0599800E7A697 /* ZcashSymbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashSymbol.swift; sourceTree = "<group>"; };
+		0D5051A125E0599800E7A697 /* Ring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		0D5051AD25E066E300E7A697 /* ZcashLogo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashLogo.swift; sourceTree = "<group>"; };
 		0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.debug.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_accept_zcash_poc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.release.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.release.xcconfig"; sourceTree = "<group>"; };
@@ -59,6 +73,7 @@
 		0D5050A625DFEFAC00E7A697 /* accept-zcash-poc */ = {
 			isa = PBXGroup;
 			children = (
+				0D5051A625E059D800E7A697 /* UI Elements */,
 				0D5050A725DFEFAC00E7A697 /* accept_zcash_pocApp.swift */,
 				0D5050A925DFEFAC00E7A697 /* ContentView.swift */,
 				0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */,
@@ -76,13 +91,26 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		0D5051A625E059D800E7A697 /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				0D50519925E0591B00E7A697 /* ZcashBackground.swift */,
+				0D50519C25E0596B00E7A697 /* ZcashTextField.swift */,
+				0D50519F25E0599800E7A697 /* Baseline.swift */,
+				0D5051AD25E066E300E7A697 /* ZcashLogo.swift */,
+				0D5051A125E0599800E7A697 /* Ring.swift */,
+				0D5051A025E0599800E7A697 /* ZcashSymbol.swift */,
+				0D50519625E0583500E7A697 /* Colors.swift */,
+			);
+			path = "UI Elements";
+			sourceTree = "<group>";
+		};
 		7099E12D9E83649407943BB2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */,
 				FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -208,6 +236,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D5050AA25DFEFAC00E7A697 /* ContentView.swift in Sources */,
+				0D50519A25E0591B00E7A697 /* ZcashBackground.swift in Sources */,
+				0D5051AE25E066E300E7A697 /* ZcashLogo.swift in Sources */,
+				0D50519D25E0596B00E7A697 /* ZcashTextField.swift in Sources */,
+				0D5051A325E0599800E7A697 /* ZcashSymbol.swift in Sources */,
+				0D50519725E0583500E7A697 /* Colors.swift in Sources */,
+				0D5051A425E0599800E7A697 /* Ring.swift in Sources */,
+				0D5051A225E0599800E7A697 /* Baseline.swift in Sources */,
 				0D5050A825DFEFAC00E7A697 /* accept_zcash_pocApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
