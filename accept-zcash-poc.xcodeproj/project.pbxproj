@@ -11,6 +11,7 @@
 		0D5050AA25DFEFAC00E7A697 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5050A925DFEFAC00E7A697 /* ContentView.swift */; };
 		0D5050AC25DFEFAD00E7A697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */; };
 		0D5050AF25DFEFAD00E7A697 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5050AE25DFEFAD00E7A697 /* Preview Assets.xcassets */; };
+		1FCF89290175BCB5B4795603 /* Pods_accept_zcash_poc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,9 @@
 		0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D5050AE25DFEFAD00E7A697 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0D5050B025DFEFAD00E7A697 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.debug.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.debug.xcconfig"; sourceTree = "<group>"; };
+		A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_accept_zcash_poc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.release.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FCF89290175BCB5B4795603 /* Pods_accept_zcash_poc.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +43,8 @@
 			children = (
 				0D5050A625DFEFAC00E7A697 /* accept-zcash-poc */,
 				0D5050A525DFEFAC00E7A697 /* Products */,
+				7099E12D9E83649407943BB2 /* Pods */,
+				B760925D1487D7EAEF2882A1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +76,24 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7099E12D9E83649407943BB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */,
+				FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B760925D1487D7EAEF2882A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -76,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0D5050B325DFEFAD00E7A697 /* Build configuration list for PBXNativeTarget "accept-zcash-poc" */;
 			buildPhases = (
+				953BB6CCE4A4EDC8A5C9C843 /* [CP] Check Pods Manifest.lock */,
 				0D5050A025DFEFAC00E7A697 /* Sources */,
 				0D5050A125DFEFAC00E7A697 /* Frameworks */,
 				0D5050A225DFEFAC00E7A697 /* Resources */,
+				FDBDCD88D0DB70C7E0E3CDDB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		953BB6CCE4A4EDC8A5C9C843 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-accept-zcash-poc-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FDBDCD88D0DB70C7E0E3CDDB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0D5050A025DFEFAC00E7A697 /* Sources */ = {
@@ -264,6 +333,7 @@
 		};
 		0D5050B425DFEFAD00E7A697 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -286,6 +356,7 @@
 		};
 		0D5050B525DFEFAD00E7A697 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

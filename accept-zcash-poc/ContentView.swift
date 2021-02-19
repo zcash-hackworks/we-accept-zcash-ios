@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-
+import ZcashLightClientKit
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+        Text("Hello, Zcash \(ZcashSDK.isMainnet ? "MainNet" : "TestNet")")
             .padding()
     }
 }
