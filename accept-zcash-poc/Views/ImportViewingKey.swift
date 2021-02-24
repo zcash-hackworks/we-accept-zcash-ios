@@ -8,9 +8,12 @@
 import SwiftUI
 import ZcashLightClientKit
 struct ImportViewingKey: View {
+
     @EnvironmentObject var model: ZcashPoSModel
+    @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment // this is where your zcash stuff lives
     @State var ivk: String = ""
     @State var birthday: String = ""
+    @State var alertType: AlertType?
     var body: some View {
         ZStack {
             ZcashBackground()
@@ -41,15 +44,34 @@ struct ImportViewingKey: View {
                     onCommit: {}
                 )
                 
-                Button(action: {
-                    // TODO: import the viewing key and initialize the app
-                }) {
-                    Text("Import Viewing Key")
-                        .foregroundColor(.black)
-                        .zcashButtonBackground(shape: .roundedCorners(fillStyle: .gradient(gradient: .zButtonGradient)))
-                }
-                .disabled(!isFormValid)
-                .opacity(isFormValid ? 1.0 : 0.4)
+                // let's make a navigation link that goes to a new screen called HomeScreen.
+
+                NavigationLink(destination: AppNavigation.Screen.home.buildScreen(), tag: AppNavigation.Screen.home , selection: $model.navigation
+                    ) {
+                        Button(action: {
+                            do {
+                                let bday = validStringToBirthday(birthday)
+                                try zcash.initialize(viewingKey: ivk, birthday: bday)
+                                // now that we initialized the zcash environment let's save the viewing key and birthday
+                                model.birthday = bday
+                                model.viewingKey = ivk
+                                
+                                // let's navigate to the next screen
+                                model.navigation = AppNavigation.Screen.home
+                            } catch {
+                                
+                                // if something does wrong, let's do nothing and show an Alert!
+                                self.alertType = .errorAlert(error)
+                            }
+                        }) {
+                            Text("Import Viewing Key")
+                                .foregroundColor(.black)
+                                .zcashButtonBackground(shape: .roundedCorners(fillStyle: .gradient(gradient: .zButtonGradient)))
+                        }
+                        .disabled(!isFormValid)
+                        .opacity(isFormValid ? 1.0 : 0.4)
+                    }
+                
             }
             .padding()
         }
@@ -57,6 +79,10 @@ struct ImportViewingKey: View {
         .animation(.easeInOut)
         .onTapGesture {
             UIApplication.shared.endEditing()
+        }
+        .navigationBarHidden(true)
+        .alert(item: $alertType) { (type) -> Alert in
+            type.buildAlert()
         }
         
     }
@@ -91,7 +117,11 @@ struct ImportViewingKey: View {
         return b >= ZcashSDK.SAPLING_ACTIVATION_HEIGHT
     }
     
+    func validStringToBirthday(_ bString: String) -> BlockHeight {
+        max(BlockHeight(bString) ?? 0,ZcashSDK.SAPLING_ACTIVATION_HEIGHT)
+    }
 }
+
 
 extension Text {
     static func subtitle(text: String) -> Text {
@@ -104,7 +134,12 @@ extension Text {
 
 extension ZcashPoSModel {
     func isValidViewingKey(_ ivk: String) -> Bool {
-        false // TODO: validate the viewing key
+        do {
+            return try DerivationTool.default.isValidExtendedViewingKey(ivk)
+        } catch {
+            logger.debug("error validating key \(error)")
+            return false
+        }
     }
 }
 struct ContentView_Previews: PreviewProvider {

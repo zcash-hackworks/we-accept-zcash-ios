@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D08DE6A25E6C29700E08533 /* sapling-output.params in Resources */ = {isa = PBXBuildFile; fileRef = 0D08DE6825E6C29600E08533 /* sapling-output.params */; };
+		0D08DE6B25E6C29700E08533 /* sapling-spend.params in Resources */ = {isa = PBXBuildFile; fileRef = 0D08DE6925E6C29700E08533 /* sapling-spend.params */; };
+		0D08DE7025E6CA6800E08533 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE6F25E6CA6800E08533 /* AlertType.swift */; };
+		0D475B2125E3ED600067978E /* CombineSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2025E3ED600067978E /* CombineSynchronizer.swift */; };
+		0D475B2725E3EEE10067978E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2625E3EEE10067978E /* DetailModel.swift */; };
+		0D475B2A25E3F04C0067978E /* String+Zcash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2925E3F04C0067978E /* String+Zcash.swift */; };
+		0D475B2D25E3F2E50067978E /* BalanceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2C25E3F2E50067978E /* BalanceUtils.swift */; };
+		0D475B3025E3F34E0067978E /* SimpleLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2F25E3F34E0067978E /* SimpleLogger.swift */; };
+		0D475B3325E3F4910067978E /* ZcashEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B3225E3F4910067978E /* ZcashEnvironment.swift */; };
 		0D5050A825DFEFAC00E7A697 /* accept_zcash_pocApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5050A725DFEFAC00E7A697 /* accept_zcash_pocApp.swift */; };
 		0D5050AA25DFEFAC00E7A697 /* ImportViewingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5050A925DFEFAC00E7A697 /* ImportViewingKey.swift */; };
 		0D5050AC25DFEFAD00E7A697 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */; };
@@ -24,10 +33,20 @@
 		0D5051BE25E078DC00E7A697 /* UIKit+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051BD25E078DC00E7A697 /* UIKit+extensions.swift */; };
 		0D5051C125E0797C00E7A697 /* ZcashButtonBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051C025E0797C00E7A697 /* ZcashButtonBackground.swift */; };
 		0D5051C425E079DE00E7A697 /* ZcashButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5051C325E079DE00E7A697 /* ZcashButton.swift */; };
+		0DC0819725E53E690028532F /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC0819625E53E690028532F /* HomeScreen.swift */; };
 		1FCF89290175BCB5B4795603 /* Pods_accept_zcash_poc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D08DE6825E6C29600E08533 /* sapling-output.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sapling-output.params"; sourceTree = "<group>"; };
+		0D08DE6925E6C29700E08533 /* sapling-spend.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sapling-spend.params"; sourceTree = "<group>"; };
+		0D08DE6F25E6CA6800E08533 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		0D475B2025E3ED600067978E /* CombineSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineSynchronizer.swift; sourceTree = "<group>"; };
+		0D475B2625E3EEE10067978E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		0D475B2925E3F04C0067978E /* String+Zcash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Zcash.swift"; sourceTree = "<group>"; };
+		0D475B2C25E3F2E50067978E /* BalanceUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceUtils.swift; sourceTree = "<group>"; };
+		0D475B2F25E3F34E0067978E /* SimpleLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleLogger.swift; sourceTree = "<group>"; };
+		0D475B3225E3F4910067978E /* ZcashEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZcashEnvironment.swift; sourceTree = "<group>"; };
 		0D5050A425DFEFAC00E7A697 /* accept-zcash-poc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "accept-zcash-poc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D5050A725DFEFAC00E7A697 /* accept_zcash_pocApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = accept_zcash_pocApp.swift; sourceTree = "<group>"; };
 		0D5050A925DFEFAC00E7A697 /* ImportViewingKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewingKey.swift; sourceTree = "<group>"; };
@@ -47,6 +66,7 @@
 		0D5051BD25E078DC00E7A697 /* UIKit+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+extensions.swift"; sourceTree = "<group>"; };
 		0D5051C025E0797C00E7A697 /* ZcashButtonBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashButtonBackground.swift; sourceTree = "<group>"; };
 		0D5051C325E079DE00E7A697 /* ZcashButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZcashButton.swift; sourceTree = "<group>"; };
+		0DC0819625E53E690028532F /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		0FD4623E3E250BAFE9075C30 /* Pods-accept-zcash-poc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.debug.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.debug.xcconfig"; sourceTree = "<group>"; };
 		A9B0B872B1F28DA0FADC9000 /* Pods_accept_zcash_poc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_accept_zcash_poc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FECC11505DE199A21B303C13 /* Pods-accept-zcash-poc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-accept-zcash-poc.release.xcconfig"; path = "Target Support Files/Pods-accept-zcash-poc/Pods-accept-zcash-poc.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,6 +84,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D475B2325E3ED660067978E /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				0D475B2025E3ED600067978E /* CombineSynchronizer.swift */,
+				0D475B3225E3F4910067978E /* ZcashEnvironment.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
+		0D475B2525E3EEBE0067978E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0D475B2625E3EEE10067978E /* DetailModel.swift */,
+				0D08DE6F25E6CA6800E08533 /* AlertType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0D475B8A25E478750067978E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0D5050A925DFEFAC00E7A697 /* ImportViewingKey.swift */,
+				0DC0819625E53E690028532F /* HomeScreen.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		0D50509B25DFEFAC00E7A697 = {
 			isa = PBXGroup;
 			children = (
@@ -85,10 +132,14 @@
 		0D5050A625DFEFAC00E7A697 /* accept-zcash-poc */ = {
 			isa = PBXGroup;
 			children = (
+				0D08DE6825E6C29600E08533 /* sapling-output.params */,
+				0D08DE6925E6C29700E08533 /* sapling-spend.params */,
+				0D475B2525E3EEBE0067978E /* Model */,
+				0D475B2325E3ED660067978E /* Environment */,
 				0D5051B825E076C200E7A697 /* Utils */,
 				0D5051A625E059D800E7A697 /* UI Elements */,
 				0D5050A725DFEFAC00E7A697 /* accept_zcash_pocApp.swift */,
-				0D5050A925DFEFAC00E7A697 /* ImportViewingKey.swift */,
+				0D475B8A25E478750067978E /* Views */,
 				0D5050AB25DFEFAD00E7A697 /* Assets.xcassets */,
 				0D5050B025DFEFAD00E7A697 /* Info.plist */,
 				0D5050AD25DFEFAD00E7A697 /* Preview Content */,
@@ -107,6 +158,7 @@
 		0D5051A625E059D800E7A697 /* UI Elements */ = {
 			isa = PBXGroup;
 			children = (
+				0D475B2925E3F04C0067978E /* String+Zcash.swift */,
 				0D5051C325E079DE00E7A697 /* ZcashButton.swift */,
 				0D5051C025E0797C00E7A697 /* ZcashButtonBackground.swift */,
 				0D50519925E0591B00E7A697 /* ZcashBackground.swift */,
@@ -123,6 +175,8 @@
 		0D5051B825E076C200E7A697 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				0D475B2F25E3F34E0067978E /* SimpleLogger.swift */,
+				0D475B2C25E3F2E50067978E /* BalanceUtils.swift */,
 				0D5051BA25E0775800E7A697 /* UIResponder+Current.swift */,
 				0D5051B325E076BA00E7A697 /* KeyboardAdaptive.swift */,
 				0D5051B425E076BA00E7A697 /* KeyboardResponder.swift */,
@@ -207,8 +261,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D08DE6A25E6C29700E08533 /* sapling-output.params in Resources */,
 				0D5050AF25DFEFAD00E7A697 /* Preview Assets.xcassets in Resources */,
 				0D5050AC25DFEFAD00E7A697 /* Assets.xcassets in Resources */,
+				0D08DE6B25E6C29700E08533 /* sapling-spend.params in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +321,8 @@
 				0D5051BE25E078DC00E7A697 /* UIKit+extensions.swift in Sources */,
 				0D5050AA25DFEFAC00E7A697 /* ImportViewingKey.swift in Sources */,
 				0D5051C125E0797C00E7A697 /* ZcashButtonBackground.swift in Sources */,
+				0DC0819725E53E690028532F /* HomeScreen.swift in Sources */,
+				0D475B3325E3F4910067978E /* ZcashEnvironment.swift in Sources */,
 				0D50519A25E0591B00E7A697 /* ZcashBackground.swift in Sources */,
 				0D5051B625E076BA00E7A697 /* KeyboardResponder.swift in Sources */,
 				0D5051C425E079DE00E7A697 /* ZcashButton.swift in Sources */,
@@ -274,8 +332,14 @@
 				0D5051A325E0599800E7A697 /* ZcashSymbol.swift in Sources */,
 				0D50519725E0583500E7A697 /* Colors.swift in Sources */,
 				0D5051A425E0599800E7A697 /* Ring.swift in Sources */,
+				0D08DE7025E6CA6800E08533 /* AlertType.swift in Sources */,
 				0D5051A225E0599800E7A697 /* Baseline.swift in Sources */,
+				0D475B2725E3EEE10067978E /* DetailModel.swift in Sources */,
 				0D5050A825DFEFAC00E7A697 /* accept_zcash_pocApp.swift in Sources */,
+				0D475B2D25E3F2E50067978E /* BalanceUtils.swift in Sources */,
+				0D475B2A25E3F04C0067978E /* String+Zcash.swift in Sources */,
+				0D475B2125E3ED600067978E /* CombineSynchronizer.swift in Sources */,
+				0D475B3025E3F34E0067978E /* SimpleLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

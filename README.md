@@ -45,7 +45,164 @@ We added he "Utils" folder has some tricks we learned along the way to make swif
 We renamed the ContentView to ImportViewingKey and added the text field and a nice Zcash Logo!
 
 
+## Tag: `step-4-import-viewing-key-for-real-and-sync-it`
+
+We have the import viewing key screen laid out. Let's put it to work! That's a little bit trickier though! 
+
+First we need to create a ZcashEnvironment were all things ZcashSDK will live
+
+```
+class ZcashEnvironment {
+    static let `default`: ZcashEnvironment = try! ZcashEnvironment()
+    
+    // you can spin up your own node and lightwalletd, check https://zcash.readthedocs.io/en/latest/rtd_pages/zcashd.html
+    let endpoint = LightWalletEndpoint(address: ZcashSDK.isMainnet ? "localhost" : "localhost", port: 9067, secure: true)
+
+    var synchronizer: CombineSynchronizer
+    
+    private init() throws {
+        let initializer = Initializer(
+            cacheDbURL: try Self.cacheDbURL(),
+            dataDbURL: try Self.dataDbURL(),
+            pendingDbURL: try Self.pendingDbURL(),
+            endpoint: endpoint,
+            spendParamsURL: try Self.spendParamsURL(),
+            outputParamsURL: try Self.outputParamsURL(),
+            loggerProxy: logger)
+        
+        // this is where the magic happens
+        self.synchronizer = try CombineSynchronizer(initializer: initializer)
+    }
+    
+    /**
+     Initializes the synchornizer with the given viewing key and birthday
+     */
+    func initialize(viewingKey: String, birthday: BlockHeight) throws {
+        try self.synchronizer.initializer.initialize(viewingKeys: [viewingKey], walletBirthday: birthday)
+    }
+}
+```
+
+Let's wire up the ZcashEnvironment
+
+````
+struct ImportViewingKey: View {
+
+    @EnvironmentObject var model: ZcashPoSModel
+    @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment // this is where your zcash stuff lives
+````
+
+Then we need to turn that dummy button into something meaningful.
+
+````
+// let's make a navigation link that goes to a new screen called HomeScreen. 
+NavigationLink(destination: AppNavigation.Screen.home.buildScreen(), tag: AppNavigation.Screen.home , selection: $model.navigation
+    ) {
+        Button(action: {
+            do {
+                let bday = validStringToBirthday(birthday)
+                try zcash.initialize(viewingKey: ivk, birthday: bday)
+                // now that we initialized the zcash environment let's save the viewing key and birthday
+                model.birthday = bday
+                model.viewingKey = ivk
+                
+                // let's navigate to the next screen
+                model.navigation = AppNavigation.Screen.home
+            } catch {
+                
+                // if something does wrong, let's do nothing and show an Alert!
+                self.alertType = .errorAlert(error)
+            }
+        }) {
+            Text("Import Viewing Key")
+                .foregroundColor(.black)
+                .zcashButtonBackground(shape: .roundedCorners(fillStyle: .gradient(gradient: .zButtonGradient)))
+        }
+
+````
+
+In our `HomeScreen` view we are going to show little to nothing for now.
+
+the important thing is that we are going to inject our PoS model and the Zcash environment. 
+
+For now we are going to say that out app is either going to be ready, syncing or offline
+
+````
+struct HomeScreen: View {
+    enum Status {
+        case ready
+        case syncing
+        case offline
+    }
+    
+    @EnvironmentObject var model: ZcashPoSModel
+    @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment
+````
+```
+VStack(alignment: .center, spacing: 20) {
+    ZcashLogo()
+    switch status {
+    case .offline:
+         Text("Offline").foregroundColor(.white)
+    case .ready:
+         Text("Ready! Yay!").foregroundColor(.white)
+    case .syncing:
+         Text("Syncing \(progress)% Block: \(height)").foregroundColor(.white)
+    }
+    
+    Button(action: {
+        zcash.synchronizer.stop()
+        model.nuke()
+    }) {
+        Text("Stop And Nuke")
+            .foregroundColor(.red)
+            .font(.title3)
+    }
+}
+
+```
 
 
+On our main app we will have to make room for the Home screen so we will have to change the way we initialize it. 
+
+````
+struct accept_zcash_pocApp: App {
+    @StateObject private var model = ZcashPoSModel()
+    
+    var body: some Scene {
+        WindowGroup {
+            // we can navigate now!
+            NavigationView {
+                // and we need to check what our main screen will be. Is it an empty or an already initialized app?
+                model.initialScreen()
+                    .environmentObject(model)
+                    .zcashEnvironment(ZcashEnvironment.default)
+                    
+            }
+        }
+    }
+}
+````
+We will consider our app to be empty when it has no viewing keys loaded
+
+```
+var appStatus: AppNavigation.AppStatus {
+    guard let vk = self.viewingKey, ((try? DerivationTool.default.isValidExtendedViewingKey(vk)) != nil) else {
+        return .empty
+    }
+    return .initialized
+}
+```
 
 
+On the other hand it's possible that we don't want to use this viewing key on this device anymore, so we added a **NUKE** function to clear it out. 
+
+```
+func nuke() {
+    self.birthday = nil
+    self.viewingKey = nil
+}
+```
+
+
+If you diff this commit you will see that there are a lot of changes and other files. Think of it as a cooking show with some pre-arrangements made for the sake of brevity. We encourage you to look at those changes! 
