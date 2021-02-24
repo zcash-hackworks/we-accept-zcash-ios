@@ -36,6 +36,24 @@ class ZcashEnvironment {
     func initialize(viewingKey: String, birthday: BlockHeight) throws {
         try self.synchronizer.initializer.initialize(viewingKeys: [viewingKey], walletBirthday: birthday)
     }
+    
+    func nuke() throws {
+        do {
+            try FileManager.default.removeItem(at: try Self.dataDbURL())
+        } catch {
+            logger.error("could not nuke wallet: \(error)")
+        }
+        do {
+            try FileManager.default.removeItem(at: try Self.cacheDbURL())
+        } catch {
+            logger.error("could not nuke wallet: \(error)")
+        }
+        do {
+            try FileManager.default.removeItem(at: try Self.pendingDbURL())
+        } catch {
+            logger.error("could not nuke wallet: \(error)")
+        }
+    }
 }
 
 fileprivate struct ZcashEnvironmentKey: EnvironmentKey {

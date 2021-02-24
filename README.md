@@ -206,3 +206,57 @@ func nuke() {
 
 
 If you diff this commit you will see that there are a lot of changes and other files. Think of it as a cooking show with some pre-arrangements made for the sake of brevity. We encourage you to look at those changes! 
+
+
+## Tag: `step-5-split-to-tab-view`
+
+We are going to change the HomeScreen into a TabView 
+
+so we will move its contents to the `SellView`, other tab is going to be the `ReceivedTransactions` and  a Settings tab where we will be moving the nuking button for now
+
+````
+struct HomeScreen: View {
+ 
+    @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment
+    @EnvironmentObject var model: ZcashPoSModel
+    @State var alertType: AlertType? = nil
+
+    var body: some View {
+
+            TabView {
+                SellScreen()
+                    .tabItem {
+                        Label("Sell", systemImage: "shield")
+                    }
+                ReceivedTransactions()
+                    .tabItem {
+                        Label("History", systemImage: "square.and.pencil")
+                    }
+                
+                SettingsScreen()
+                    .tabItem {
+                        Label("Settings", systemImage: "list.dash")
+                    }
+                
+
+            }
+        .navigationBarHidden(false)
+        .onAppear() {
+            _zECCWalletNavigationBarLookTweaks()
+            do {
+                guard let ivk = model.viewingKey, let bday = model.birthday else {
+                    throw ZcashPoSModel.PoSError.unableToRetrieveCredentials
+                }
+                try self.zcash.synchronizer.initializer.initialize(viewingKeys: [ivk], walletBirthday: bday)
+                try self.zcash.synchronizer.start()
+            } catch {
+                self.alertType = AlertType.errorAlert(error)
+            }
+        }
+        .alert(item: $alertType) { (type) -> Alert in
+            type.buildAlert()
+        }
+    }
+}
+````
+

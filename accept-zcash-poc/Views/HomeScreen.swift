@@ -8,59 +8,30 @@
 import SwiftUI
 import ZcashLightClientKit
 struct HomeScreen: View {
-    enum Status {
-        case ready
-        case syncing
-        case offline
-    }
-    
-    @EnvironmentObject var model: ZcashPoSModel
+ 
     @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment
+    @EnvironmentObject var model: ZcashPoSModel
     @State var alertType: AlertType? = nil
-    @State var status: Status = .offline
-    @State var progress: Int = 0
-    @State var height: BlockHeight = ZcashSDK.SAPLING_ACTIVATION_HEIGHT
 
     var body: some View {
-        ZStack {
-            ZcashBackground()
-            VStack(alignment: .center, spacing: 20) {
-                ZcashLogo()
-                switch status {
-                case .offline:
-                     Text("Offline").foregroundColor(.white)
-                case .ready:
-                     Text("Ready! Yay!").foregroundColor(.white)
-                case .syncing:
-                     Text("Syncing \(progress)% Block: \(height)").foregroundColor(.white)
-                }
+
+            TabView {
+                SellScreen()
+                    .tabItem {
+                        Label("Sell", systemImage: "shield")
+                    }
+                ReceivedTransactions()
+                    .tabItem {
+                        Label("History", systemImage: "square.and.pencil")
+                    }
                 
-                Button(action: {
-                    zcash.synchronizer.stop()
-                    model.nuke()
-                }) {
-                    Text("Stop And Nuke")
-                        .foregroundColor(.red)
-                        .font(.title3)
-                }
+                SettingsScreen()
+                    .tabItem {
+                        Label("Settings", systemImage: "list.dash")
+                    }
+                
+
             }
-            .onReceive(zcash.synchronizer.progress) { (p) in
-                self.progress = Int(p * 100)
-            }
-            .onReceive(zcash.synchronizer.syncBlockHeight) { (h) in
-                self.height = h
-            }
-        }.onReceive(zcash.synchronizer.status) { (s) in
-            switch s {
-            case .disconnected, .stopped:
-                self.status = .offline
-            case .synced:
-                self.status = .ready
-            case .syncing:
-                self.status = .syncing
-            }
-        }
-        .navigationBarTitle(Text("Zcash PoS"), displayMode: .inline)
         .navigationBarHidden(false)
         .onAppear() {
             _zECCWalletNavigationBarLookTweaks()

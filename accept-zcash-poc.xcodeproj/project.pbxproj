@@ -10,6 +10,9 @@
 		0D08DE6A25E6C29700E08533 /* sapling-output.params in Resources */ = {isa = PBXBuildFile; fileRef = 0D08DE6825E6C29600E08533 /* sapling-output.params */; };
 		0D08DE6B25E6C29700E08533 /* sapling-spend.params in Resources */ = {isa = PBXBuildFile; fileRef = 0D08DE6925E6C29700E08533 /* sapling-spend.params */; };
 		0D08DE7025E6CA6800E08533 /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE6F25E6CA6800E08533 /* AlertType.swift */; };
+		0D08DE7325E6FE4B00E08533 /* SellScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE7225E6FE4B00E08533 /* SellScreen.swift */; };
+		0D08DE7625E7077F00E08533 /* ReceivedTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */; };
+		0D08DEAA25E70D8400E08533 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DEA925E70D8400E08533 /* SettingsScreen.swift */; };
 		0D475B2125E3ED600067978E /* CombineSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2025E3ED600067978E /* CombineSynchronizer.swift */; };
 		0D475B2725E3EEE10067978E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2625E3EEE10067978E /* DetailModel.swift */; };
 		0D475B2A25E3F04C0067978E /* String+Zcash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2925E3F04C0067978E /* String+Zcash.swift */; };
@@ -41,6 +44,9 @@
 		0D08DE6825E6C29600E08533 /* sapling-output.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sapling-output.params"; sourceTree = "<group>"; };
 		0D08DE6925E6C29700E08533 /* sapling-spend.params */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sapling-spend.params"; sourceTree = "<group>"; };
 		0D08DE6F25E6CA6800E08533 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		0D08DE7225E6FE4B00E08533 /* SellScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellScreen.swift; sourceTree = "<group>"; };
+		0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTransactions.swift; sourceTree = "<group>"; };
+		0D08DEA925E70D8400E08533 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		0D475B2025E3ED600067978E /* CombineSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineSynchronizer.swift; sourceTree = "<group>"; };
 		0D475B2625E3EEE10067978E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		0D475B2925E3F04C0067978E /* String+Zcash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Zcash.swift"; sourceTree = "<group>"; };
@@ -107,6 +113,9 @@
 			children = (
 				0D5050A925DFEFAC00E7A697 /* ImportViewingKey.swift */,
 				0DC0819625E53E690028532F /* HomeScreen.swift */,
+				0D08DE7225E6FE4B00E08533 /* SellScreen.swift */,
+				0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */,
+				0D08DEA925E70D8400E08533 /* SettingsScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +334,7 @@
 				0D475B3325E3F4910067978E /* ZcashEnvironment.swift in Sources */,
 				0D50519A25E0591B00E7A697 /* ZcashBackground.swift in Sources */,
 				0D5051B625E076BA00E7A697 /* KeyboardResponder.swift in Sources */,
+				0D08DE7625E7077F00E08533 /* ReceivedTransactions.swift in Sources */,
 				0D5051C425E079DE00E7A697 /* ZcashButton.swift in Sources */,
 				0D5051AE25E066E300E7A697 /* ZcashLogo.swift in Sources */,
 				0D50519D25E0596B00E7A697 /* ZcashTextField.swift in Sources */,
@@ -336,6 +346,8 @@
 				0D5051A225E0599800E7A697 /* Baseline.swift in Sources */,
 				0D475B2725E3EEE10067978E /* DetailModel.swift in Sources */,
 				0D5050A825DFEFAC00E7A697 /* accept_zcash_pocApp.swift in Sources */,
+				0D08DEAA25E70D8400E08533 /* SettingsScreen.swift in Sources */,
+				0D08DE7325E6FE4B00E08533 /* SellScreen.swift in Sources */,
 				0D475B2D25E3F2E50067978E /* BalanceUtils.swift in Sources */,
 				0D475B2A25E3F04C0067978E /* String+Zcash.swift in Sources */,
 				0D475B2125E3ED600067978E /* CombineSynchronizer.swift in Sources */,
