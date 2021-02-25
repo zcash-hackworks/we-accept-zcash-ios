@@ -344,4 +344,35 @@ We can do this and many more things with the `DerivationTool` class of the Zcash
 Unfortunately this screen is really helpful. we need to get some QR code so that the user can scan the address! We will see that on the next step
 
 
+## Tag: `step-7-request-zec-qr-code`
+
+On this step we are just going to request zec in a decent way that's useful to our customers.  For that we will have to create a QR Code Image and display in on screen. Fortunately our ECC Wallet App already does this and we are going to borrow some code from it. 
+
+The first thing we need is a QR Code generator. iOS already does that pretty well, but the API is somewhat rough. So we created this helper class called  `QRCodeGenerator`
+
+We are going to add this snippet to the `RequestZec` screen struct
+````
+// This Generates the QR Image
+var qrImage: Image {
+    if let zAddr = self.zAddress, let img = QRCodeGenerator.generate(from: zAddr) {
+        return Image(img, scale: 1, label: Text(String(format:NSLocalizedString("QR Code for %@", comment: ""),"\(zAddr)") ))
+    } else {
+        return Image("zebra_profile")
+    }
+}
+````
+
+and also this one to the body of the view  so that the qr code is show. or a nice zebra placeholder otherwise
+
+````
+QRCodeContainer(qrImage: qrImage,
+                badge: Image("QR-zcashlogo"))
+    .frame(width: qrSize, height: qrSize, alignment: .center)
+    .layoutPriority(1)
+````
+We borrowed some nice assets from the wallet too! A cool zebra, and a nice shield for our QR code.
+
+And that's it! Customers will be able to scan our Zcash Sapling Address! 
+
+Our next step will be receiving the transactions.
 

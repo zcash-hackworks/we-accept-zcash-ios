@@ -11,14 +11,23 @@ struct RequestZec: View {
     @EnvironmentObject var model: ZcashPoSModel
     @State var zAddress: String? = nil
     @State var alertType: AlertType? = nil
+    // This Generates the QR Image
+    var qrImage: Image {
+        if let zAddr = self.zAddress, let img = QRCodeGenerator.generate(from: zAddr) {
+            return Image(img, scale: 1, label: Text(String(format:NSLocalizedString("QR Code for %@", comment: ""),"\(zAddr)") ))
+        } else {
+            return Image("zebra_profile")
+        }
+    }
+    
     var body: some View {
         ZStack {
             ZcashBackground()
             VStack(alignment: .center, spacing: 40){
-                Text("To This address:")
-                    .foregroundColor(.white)
-                Text(zAddress ?? "Error Deriving Address")
-                    .foregroundColor(.white)
+                QRCodeContainer(qrImage: qrImage,
+                                badge: Image("QR-zcashlogo"))
+                    .frame(width: 150, height: 150, alignment: .center)
+                    .layoutPriority(1)
                 
                 Text("$\(model.request.amount.toZecAmount())")
                 .lineLimit(1)
@@ -29,10 +38,13 @@ struct RequestZec: View {
                 )
                 
                 Text("Append Memo With this Code")
+                    
                     .foregroundColor(.white)
+                    .font(.title2)
                 Text(model.request.code)
                     .foregroundColor(.white)
-                    .font(.title)
+                    .font(.system(size: 72))
+                    
             }
         }.navigationTitle("Pay with ZEC")
         .onAppear() {
