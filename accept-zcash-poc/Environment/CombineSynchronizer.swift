@@ -202,7 +202,9 @@ class CombineSynchronizer {
         self.balance.send(initializer.getBalance().asHumanReadableZecBalance())
         self.verifiedBalance.send(initializer.getVerifiedBalance().asHumanReadableZecBalance())
         self.status.send(.synced)
-        self.receivedTransactions.sink(receiveCompletion: { _ in
+        self.receivedTransactions
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { _ in
             }) { [weak self] (details) in
                 guard !details.isEmpty else { return }
             self?.receivedTransactionBuffer.send(details.map({ DetailModel(confirmedTransaction: $0) }))

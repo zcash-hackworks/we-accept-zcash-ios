@@ -42,6 +42,8 @@ extension DetailModel: Equatable {
         lhs.id == rhs.id
     }
 }
+extension DetailModel: Hashable {}
+extension DetailModel.Status: Hashable {}
 
 import ZcashLightClientKit
 extension Date {

@@ -23,10 +23,10 @@ struct RequestZec: View {
     var body: some View {
         ZStack {
             ZcashBackground()
-            VStack(alignment: .center, spacing: 40){
+            VStack(alignment: .center, spacing: 20){
                 QRCodeContainer(qrImage: qrImage,
                                 badge: Image("QR-zcashlogo"))
-                    .frame(width: 150, height: 150, alignment: .center)
+                    .frame(width: 200, height: 200, alignment: .center)
                     .layoutPriority(1)
                 
                 Text("$\(model.request.amount.toZecAmount())")

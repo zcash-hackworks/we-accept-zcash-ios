@@ -24,6 +24,7 @@ struct SettingsScreen: View {
             ZcashBackground()
             VStack {
                 ZcashLogo()
+                Spacer()
                 switch status {
                 case .offline:
                     Button(action: {
@@ -36,16 +37,18 @@ struct SettingsScreen: View {
                 case .syncing:
                     Text("Syncing \(progress)% Block: \(height)").foregroundColor(.white)
                 }
-                Button(action: {
-                    zcash.synchronizer.stop()
-                    model.nuke()
-                    try! zcash.nuke()
-                    model.navigation = .importViewingKey
-                }) {
+                Spacer()
+           
                     Text("Stop And Nuke")
                         .foregroundColor(.red)
                         .font(.title3)
-                }
+                        .onLongPressGesture {
+                            zcash.synchronizer.stop()
+                            model.nuke()
+                            try! zcash.nuke()
+                            model.navigation = .importViewingKey
+                        }
+                
             }
         }
         .onReceive(zcash.synchronizer.progress) { (p) in

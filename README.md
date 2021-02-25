@@ -376,3 +376,88 @@ And that's it! Customers will be able to scan our Zcash Sapling Address!
 
 Our next step will be receiving the transactions.
 
+## Tag: `step-8-received-transactions`
+
+We synced our Viewing Key and created a Request Zec Screen. Now we need to know whether we received the payment or not.
+
+We follow our experts' recommendation of waiting 10 confirmations for those funds to be spendable, but we will be able to see the incoming payment as soon as it is mined.
+
+So let's give our `ReceivedTransactions` screen some love.
+
+first let's add the ZcashEnvironment and the App's model, and also two @State variables, one for the selection (yes, we are going to see the Tx details too!) and the other ones for the transactions that were decrypted with our viewing key.
+
+````
+struct ReceivedTransactions: View {
+    @EnvironmentObject var model: ZcashPoSModel
+    @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment
+    @State var selection: DetailModel? = nil
+    @State var transactions: [DetailModel] = []
+    
+    var body: some View {
+        NavigationView {
+            buildBody(transactions: transactions)
+                .navigationBarTitle("Received Transactions", displayMode: .inline)
+                .navigationBarHidden(false)
+                .onReceive(zcash.synchronizer.receivedTransactionBuffer) { (r) in
+                    self.transactions = r
+                }
+        }.onAppear() {
+            let clearView = UIView()
+            clearView.backgroundColor = UIColor.clear
+            UITableViewCell.appearance().selectedBackgroundView = clearView
+            UITableView.appearance().backgroundColor = UIColor.clear
+        }
+        
+    }
+````
+
+We are going to show an empty state when we don't see any transactions and an (ugly) list when we do with this view builder
+
+````
+@ViewBuilder func buildBody(transactions: [DetailModel]) -> some View {
+    if transactions.isEmpty {
+        ZStack {
+            ZcashBackground()
+            Text("No transactions yet")
+                .foregroundColor(.white)
+        }
+    } else {
+        ZStack {
+            ZcashBackground()
+            List(transactions) { (row)  in
+                ZStack {
+                    ZcashBackground()
+                    NavigationLink(destination: TransactionDetails(model: row,isCopyAlertShown: false), tag: row, selection: $selection) {
+                       EmptyView()
+                        
+                    }
+                    HStack {
+                        VStack {
+                            Text(row.memo ?? "No Memo")
+                                .foregroundColor(.white)
+                            Text(row.subtitle)
+                                .foregroundColor(.white)
+                        }
+                        Text("$\(row.zecAmount.toZecAmount())")
+                            .foregroundColor(.zPositiveZecAmount)
+                    }
+                    .frame(height: 64)
+                    
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    .padding(0)
+                    
+                }
+            }
+            .listStyle(PlainListStyle())
+            .listRowBackground(ZcashBackground())
+        }
+    }
+    
+````
+
+I once nuked my app by mistake so we are also going to fix that. On this commit you will see several bug fixes! If you find more, or have improvement ideas, please send a pull request!
+
+Alright Folks! This is it for the time being! 
+
+Android devs, I dare you to create the same app for your beloved green robot using the zcash-android-wallet-sdk!
+

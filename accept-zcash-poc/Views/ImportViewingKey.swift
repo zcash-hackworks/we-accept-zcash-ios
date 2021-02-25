@@ -67,6 +67,7 @@ struct ImportViewingKey: View {
                             Text("Import Viewing Key")
                                 .foregroundColor(.black)
                                 .zcashButtonBackground(shape: .roundedCorners(fillStyle: .gradient(gradient: .zButtonGradient)))
+                                .frame(height: 48)
                         }
                         .disabled(!isFormValid)
                         .opacity(isFormValid ? 1.0 : 0.4)
