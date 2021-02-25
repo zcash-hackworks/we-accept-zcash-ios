@@ -15,20 +15,23 @@ struct HomeScreen: View {
 
     var body: some View {
 
-            TabView {
+        TabView(selection: $model.tabSelection) {
                 SellScreen()
                     .tabItem {
                         Label("Sell", systemImage: "shield")
                     }
+                    .tag(AppNavigation.Tab.sell)
                 ReceivedTransactions()
                     .tabItem {
                         Label("History", systemImage: "square.and.pencil")
                     }
+                    .tag(AppNavigation.Tab.received)
                 
                 SettingsScreen()
                     .tabItem {
                         Label("Settings", systemImage: "list.dash")
                     }
+                    .tag(AppNavigation.Tab.settings)
                 
 
             }

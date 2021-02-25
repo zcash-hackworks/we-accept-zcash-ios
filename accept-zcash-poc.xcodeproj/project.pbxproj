@@ -13,6 +13,8 @@
 		0D08DE7325E6FE4B00E08533 /* SellScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE7225E6FE4B00E08533 /* SellScreen.swift */; };
 		0D08DE7625E7077F00E08533 /* ReceivedTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */; };
 		0D08DEAA25E70D8400E08533 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DEA925E70D8400E08533 /* SettingsScreen.swift */; };
+		0D08DEAD25E71D4500E08533 /* RequestZec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D08DEAC25E71D4500E08533 /* RequestZec.swift */; };
+		0D08DEB025E732C900E08533 /* Zboto.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D08DEAF25E732C900E08533 /* Zboto.otf */; };
 		0D475B2125E3ED600067978E /* CombineSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2025E3ED600067978E /* CombineSynchronizer.swift */; };
 		0D475B2725E3EEE10067978E /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2625E3EEE10067978E /* DetailModel.swift */; };
 		0D475B2A25E3F04C0067978E /* String+Zcash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D475B2925E3F04C0067978E /* String+Zcash.swift */; };
@@ -47,6 +49,8 @@
 		0D08DE7225E6FE4B00E08533 /* SellScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellScreen.swift; sourceTree = "<group>"; };
 		0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedTransactions.swift; sourceTree = "<group>"; };
 		0D08DEA925E70D8400E08533 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		0D08DEAC25E71D4500E08533 /* RequestZec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestZec.swift; sourceTree = "<group>"; };
+		0D08DEAF25E732C900E08533 /* Zboto.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zboto.otf; sourceTree = "<group>"; };
 		0D475B2025E3ED600067978E /* CombineSynchronizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineSynchronizer.swift; sourceTree = "<group>"; };
 		0D475B2625E3EEE10067978E /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
 		0D475B2925E3F04C0067978E /* String+Zcash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Zcash.swift"; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 				0D08DE7225E6FE4B00E08533 /* SellScreen.swift */,
 				0D08DE7525E7077F00E08533 /* ReceivedTransactions.swift */,
 				0D08DEA925E70D8400E08533 /* SettingsScreen.swift */,
+				0D08DEAC25E71D4500E08533 /* RequestZec.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 		0D5050A625DFEFAC00E7A697 /* accept-zcash-poc */ = {
 			isa = PBXGroup;
 			children = (
+				0D08DEAF25E732C900E08533 /* Zboto.otf */,
 				0D08DE6825E6C29600E08533 /* sapling-output.params */,
 				0D08DE6925E6C29700E08533 /* sapling-spend.params */,
 				0D475B2525E3EEBE0067978E /* Model */,
@@ -273,6 +279,7 @@
 				0D08DE6A25E6C29700E08533 /* sapling-output.params in Resources */,
 				0D5050AF25DFEFAD00E7A697 /* Preview Assets.xcassets in Resources */,
 				0D5050AC25DFEFAD00E7A697 /* Assets.xcassets in Resources */,
+				0D08DEB025E732C900E08533 /* Zboto.otf in Resources */,
 				0D08DE6B25E6C29700E08533 /* sapling-spend.params in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,6 +339,7 @@
 				0D5051C125E0797C00E7A697 /* ZcashButtonBackground.swift in Sources */,
 				0DC0819725E53E690028532F /* HomeScreen.swift in Sources */,
 				0D475B3325E3F4910067978E /* ZcashEnvironment.swift in Sources */,
+				0D08DEAD25E71D4500E08533 /* RequestZec.swift in Sources */,
 				0D50519A25E0591B00E7A697 /* ZcashBackground.swift in Sources */,
 				0D5051B625E076BA00E7A697 /* KeyboardResponder.swift in Sources */,
 				0D08DE7625E7077F00E08533 /* ReceivedTransactions.swift in Sources */,

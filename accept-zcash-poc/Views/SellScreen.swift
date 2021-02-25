@@ -9,75 +9,106 @@ import SwiftUI
 import ZcashLightClientKit
 
 struct SellScreen: View {
-    enum Status {
-        case ready
-        case syncing
-        case offline
-    }
+    
     
     @EnvironmentObject var model: ZcashPoSModel
     @Environment(\.zcashEnvironment) var zcash: ZcashEnvironment
     @State var alertType: AlertType? = nil
-    @State var status: Status = .offline
-    @State var progress: Int = 0
-    @State var height: BlockHeight = ZcashSDK.SAPLING_ACTIVATION_HEIGHT
-
+    @State var numberString: String = ""
+    @State var orderCode: String = ""
+    @State var navigation: AppNavigation.Screen? = nil
     var body: some View {
-        ZStack {
-            ZcashBackground()
-            VStack(alignment: .center, spacing: 20) {
-                ZcashLogo()
-                switch status {
-                case .offline:
-                    Button(action: {
-                        start()
-                    }) {
-                        Text("Offline - Tap to Start").foregroundColor(.white)
+        NavigationView {
+            ZStack {
+                ZcashBackground()
+                VStack(alignment: .center, spacing: 20) {
+                    ZcashLogo(width: 50)
+                        
+                    Spacer()
+                    ZcashTextField(title: "Zec Amount To Request",
+                                   subtitleView: amountSubtitle,
+                                   contentType: nil,
+                                   keyboardType: .numberPad,
+                                   binding: $numberString,
+                                   action: nil,
+                                   accessoryIcon: nil,
+                                   onEditingChanged: { _ in }, onCommit: {})
+                    
+                    ZcashTextField(title: "Order Code",
+                                   subtitleView: codeSubtitle,
+                                   binding: $orderCode) { _ in } onCommit: {}
+                    
+                    NavigationLink(destination: AppNavigation.Screen.request.buildScreen().environmentObject(model), tag: AppNavigation.Screen.request, selection: $model.navigation) {
+                        Button(action: {
+                            guard let amount = NumberFormatter.zecAmountFormatter.number(from: numberString)?.doubleValue,
+                                  validOrderCode else {
+                                self.alertType = AlertType.message("Invalid values!")
+                                return
+                            }
+                            model.currentPayment = ZcashPoSModel.ZECRequest(amount: amount, code: orderCode)
+                            model.navigation = .request
+                        }) {
+                            Text("Request ZEC")
+                                .foregroundColor(.black)
+                                .zcashButtonBackground(shape: .rounded(fillStyle: .gradient(gradient: .zButtonGradient)))
+                                .frame(height: 48)
+                        }
+                        .disabled(!validForm)
+                        .opacity(validForm ? 1.0 : 0.6)
                     }
-                case .ready:
-                     Text("Ready! Yay!").foregroundColor(.white)
-                case .syncing:
-                     Text("Syncing \(progress)% Block: \(height)").foregroundColor(.white)
                 }
+                .padding(20)
                 
             }
-            .onReceive(zcash.synchronizer.progress) { (p) in
-                self.progress = Int(p * 100)
+            .keyboardAdaptive()
+            .navigationBarTitle(Text("Zcash PoS"), displayMode: .inline)
+            .navigationBarHidden(false)
+            .onAppear() {
+                _zECCWalletNavigationBarLookTweaks()
             }
-            .onReceive(zcash.synchronizer.syncBlockHeight) { (h) in
-                self.height = h
-            }
-        }.onReceive(zcash.synchronizer.status) { (s) in
-            switch s {
-            case .disconnected, .stopped:
-                self.status = .offline
-            case .synced:
-                self.status = .ready
-            case .syncing:
-                self.status = .syncing
+            .alert(item: $alertType) { (type) -> Alert in
+                type.buildAlert()
             }
         }
-        .navigationBarTitle(Text("Zcash PoS"), displayMode: .inline)
-        .navigationBarHidden(false)
-        .onAppear() {
-            _zECCWalletNavigationBarLookTweaks()
-            start()
-        }
-        .alert(item: $alertType) { (type) -> Alert in
-            type.buildAlert()
-        }
+        
     }
-    func start() {
-        do {
-            guard let ivk = model.viewingKey, let bday = model.birthday else {
-                throw ZcashPoSModel.PoSError.unableToRetrieveCredentials
-            }
-            try self.zcash.synchronizer.initializer.initialize(viewingKeys: [ivk], walletBirthday: bday)
-            try self.zcash.synchronizer.start()
-        } catch {
-            self.alertType = AlertType.errorAlert(error)
-        }
+    var amountSubtitle: AnyView {
+        AnyView(
+            Text(validAmount ? "This is a valid amount" : "Invalid Zec amount")
+                .foregroundColor(.white)
+                .font(.caption)
+        )
     }
+    
+    var codeSubtitle: AnyView {
+        AnyView(
+            Text(validOrderCode ? "Valid Order code" : "Please enter an order code")
+                .foregroundColor(.white)
+                .font(.caption)
+        )
+    }
+
+    var validAmount: Bool {
+        guard let amount = NumberFormatter.zecAmountFormatter.number(from: numberString)?.doubleValue else {
+            return false
+        }
+        
+        return amount > 0
+    }
+    
+    var validOrderCode: Bool {
+        !orderCode.isEmpty && orderCode.count < 6
+    }
+    
+    var validForm: Bool {
+        guard validAmount,
+              validOrderCode else {
+            return false
+        }
+        return true
+    }
+    
+   
 }
 
 struct SellScreen_Previews: PreviewProvider {

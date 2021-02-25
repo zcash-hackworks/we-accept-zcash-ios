@@ -16,14 +16,12 @@ struct accept_zcash_pocApp: App {
     
     var body: some Scene {
         WindowGroup {
-            // we can navigate now!
-            NavigationView {
-                // and we need to check what our main screen will be. Is it an empty or an already initialized app?
-                model.initialScreen()
-                    .environmentObject(model)
-                    .zcashEnvironment(ZcashEnvironment.default)
-                    
-            }
+            
+            //we need to check what our main screen will be. Is it an empty or an already initialized app?
+            model.initialScreen()
+                .environmentObject(model)
+                .zcashEnvironment(ZcashEnvironment.default)
+            
         }
     }
 }
@@ -36,10 +34,17 @@ class ZcashPoSModel: ObservableObject {
         case failedToStart(error: Error)
         case unableToRetrieveCredentials
     }
-    @Published var tabSelection: AppNavigation.Tab = .history
-    @Published var status = AppNavigation.AppStatus.current
+    
+    struct ZECRequest {
+        var amount: Double
+        var code: String
+    }
+    
+    @Published var tabSelection: AppNavigation.Tab = .sell
+    @Published var status = AppNavigation.AppStatus.empty
     @Published var navigation: AppNavigation.Screen? = nil
-   
+    @Published var currentPayment: ZECRequest? = nil
+    
     @AppStorage("viewingKey") var viewingKey: String?
     @AppStorage("walletBirthday") var birthday: BlockHeight?
     
@@ -50,11 +55,13 @@ class ZcashPoSModel: ObservableObject {
         return .initialized
     }
     
-   @ViewBuilder func initialScreen() -> some View{
+    @ViewBuilder func initialScreen() -> some View{
         
         switch appStatus {
         case .empty:
-            ImportViewingKey()
+            NavigationView {
+                ImportViewingKey()
+            }
         case .initialized:
             HomeScreen()
         }
@@ -71,27 +78,35 @@ struct AppNavigation {
     enum AppStatus {
         case empty
         case initialized
-        
-        static var current: AppStatus {
-            .empty
-        }
     }
     
     enum Tab {
-        case receive
-        case history
+        case sell
+        case received
+        case settings
     }
     
     enum Screen {
         case importViewingKey
         case home
-        
+        case receivedTransaction
+        case settings
+        case sell
+        case request
         @ViewBuilder func buildScreen() -> some View {
             switch self {
             case .importViewingKey:
-                 ImportViewingKey()
+                ImportViewingKey()
             case .home:
-                 HomeScreen()
+                HomeScreen()
+            case .receivedTransaction:
+                ReceivedTransactions()
+            case .settings:
+                SettingsScreen()
+            case .request:
+                RequestZec()
+            case .sell:
+                SellScreen()
             }
         }
     }

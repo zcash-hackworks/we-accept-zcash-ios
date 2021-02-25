@@ -260,3 +260,88 @@ struct HomeScreen: View {
 }
 ````
 
+## Tag: `step-6-Sell-Screen`
+
+We are going to create a sell screen where we will generate a QR code with our address and some instructions for our customer to send us the requested ZEC along some memo. 
+
+We are going to move some other elements to the SettingsView, and Create a form in the `SellScreen` view where we will request some amount and enter an order code, that will be shown on the request screen so that the user types that code in the transaction memo.
+
+````
+/// SellScreen.swift
+var body: some View {
+    NavigationView {
+        ZStack {
+            ZcashBackground()
+            VStack(alignment: .center, spacing: 20) {
+                ZcashLogo(width: 50)
+                    
+                Spacer()
+                ZcashTextField(title: "Zec Amount To Request",
+                               subtitleView: amountSubtitle,
+                               contentType: nil,
+                               keyboardType: .numberPad,
+                               binding: $numberString,
+                               action: nil,
+                               accessoryIcon: nil,
+                               onEditingChanged: { _ in }, onCommit: {})
+                
+                ZcashTextField(title: "Order Code",
+                               subtitleView: codeSubtitle,
+                               binding: $orderCode) { _ in } onCommit: {}
+````
+
+
+We are going to create the Request Screen. It will allow the user to see the information needed to create the transaction
+
+````
+struct RequestZec: View {
+    @EnvironmentObject var model: ZcashPoSModel
+    @State var zAddress: String? = nil
+    @State var alertType: AlertType? = nil
+    var body: some View {
+        ZStack {
+            ZcashBackground()
+            VStack(alignment: .center, spacing: 40){
+                Text("To This address:")
+                    .foregroundColor(.white)
+                Text(zAddress ?? "Error Deriving Address")
+                    .foregroundColor(.white)
+                
+                Text("$\(model.request.amount.toZecAmount())")
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+                .foregroundColor(.white)
+                .font(
+                    .custom("Zboto", size: 72)
+                )
+                
+                Text("Append Memo With this Code")
+                    .foregroundColor(.white)
+                Text(model.request.code)
+                    .foregroundColor(.white)
+                    .font(.title)
+            }
+        }.navigationTitle("Pay with ZEC")
+````
+
+The interesting part is this: We can derive a Z-Address from viewing key! 
+We can do this and many more things with the `DerivationTool` class of the Zcash SDK.
+
+````
+.onAppear() {
+    do {
+        guard let ivk = model.viewingKey else {
+            self.alertType = .errorAlert(ZcashPoSModel.PoSError.unableToRetrieveCredentials)
+            return
+        }
+        self.zAddress = try DerivationTool.default.deriveShieldedAddress(viewingKey: ivk)
+    } catch {
+        self.alertType = .errorAlert(error)
+    }
+}
+````
+
+Unfortunately this screen is really helpful. we need to get some QR code so that the user can scan the address! We will see that on the next step
+
+
+
