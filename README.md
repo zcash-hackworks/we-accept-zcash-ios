@@ -33,11 +33,17 @@ On ContentView.swift, import `ZcashLightClientKit` and add a text saying hello t
 ````
 
 ## Tag: `step-2-the-look`
+<img src=./screenshots/step-2-home.png width=300>
+
+
 We are going to import quite a few perks from the ECC Wallet. 
 The "UI Elements" folder contains several UI components we use on our app. 
  
 
 ## Tag: `step-3-import-viewing-key-scaffold`
+
+<img src=./screenshots/step-3-import.png width=300>
+
 Let's make a scaffold for our first task: Importing a viewing key
 
 We added he "Utils" folder has some tricks we learned along the way to make swift ui more usable. Like keyboard avoidance support.
@@ -46,6 +52,9 @@ We renamed the ContentView to ImportViewingKey and added the text field and a ni
 
 
 ## Tag: `step-4-import-viewing-key-for-real-and-sync-it`
+
+<img src=./screenshots/step-4-home.png width=200>
+<img src=./screenshots/step-4-import.png width=200>
 
 We have the import viewing key screen laid out. Let's put it to work! That's a little bit trickier though! 
 
@@ -210,6 +219,10 @@ If you diff this commit you will see that there are a lot of changes and other f
 
 ## Tag: `step-5-split-to-tab-view`
 
+<img src=./screenshots/step-5-sell.png width=200>
+<img src=./screenshots/step-5-history.png width=200>
+
+
 We are going to change the HomeScreen into a TabView 
 
 so we will move its contents to the `SellView`, other tab is going to be the `ReceivedTransactions` and  a Settings tab where we will be moving the nuking button for now
@@ -261,6 +274,11 @@ struct HomeScreen: View {
 ````
 
 ## Tag: `step-6-Sell-Screen`
+
+<img src=./screenshots/step-6-sell.png width=100>
+<img src=./screenshots/step-6-history.png width=100>
+<img src=./screenshots/step-6-settings.png width=100>
+
 
 We are going to create a sell screen where we will generate a QR code with our address and some instructions for our customer to send us the requested ZEC along some memo. 
 
@@ -346,6 +364,10 @@ Unfortunately this screen is really helpful. we need to get some QR code so that
 
 ## Tag: `step-7-request-zec-qr-code`
 
+<img src=./screenshots/step-7-sell.png width=100>
+<img src=./screenshots/step-7-history.png width=100>
+<img src=./screenshots/step-7-settings.png width=100>
+
 On this step we are just going to request zec in a decent way that's useful to our customers.  For that we will have to create a QR Code Image and display in on screen. Fortunately our ECC Wallet App already does this and we are going to borrow some code from it. 
 
 The first thing we need is a QR Code generator. iOS already does that pretty well, but the API is somewhat rough. So we created this helper class called  `QRCodeGenerator`
@@ -377,6 +399,10 @@ And that's it! Customers will be able to scan our Zcash Sapling Address!
 Our next step will be receiving the transactions.
 
 ## Tag: `step-8-received-transactions`
+
+<img src=./screenshots/step-8-sell.png width=100>
+<img src=./screenshots/step-8-history.png width=100>
+<img src=./screenshots/step-8-settings.png width=100>
 
 We synced our Viewing Key and created a Request Zec Screen. Now we need to know whether we received the payment or not.
 
@@ -461,3 +487,9 @@ Alright Folks! This is it for the time being!
 
 Android devs, I dare you to create the same app for your beloved green robot using the zcash-android-wallet-sdk!
 
+# Challenge! Make this app real!
+
+These were the original wireframes for this PoS idea! We dare you to make it real and share it with the world!
+
+Bigger images are available in the `Cool-Design-Wireframes` folder
+<img src=./screenshots/wireframes.png width=500>
