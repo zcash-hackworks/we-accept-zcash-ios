@@ -1,6 +1,6 @@
 use_frameworks!
 target 'accept-zcash-poc' do 
-  pod 'ZcashLightClientKit', :git => 'https://github.com/zcash/ZcashLightClientKit.git', :branch => 'key-validation'
+  pod 'ZcashLightClientKit', '~> 0.10.1'
 end
 
 post_install do |installer|
