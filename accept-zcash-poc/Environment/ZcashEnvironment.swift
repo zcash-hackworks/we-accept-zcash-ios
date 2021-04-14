@@ -12,7 +12,7 @@ class ZcashEnvironment {
     static let `default`: ZcashEnvironment = try! ZcashEnvironment()
     
     // you can spin up your own node and lightwalletd, check https://zcash.readthedocs.io/en/latest/rtd_pages/zcashd.html
-    let endpoint = LightWalletEndpoint(address: ZcashSDK.isMainnet ? "localhost" : "localhost", port: 9067, secure: true)
+    let endpoint = LightWalletEndpoint(address: ZcashSDK.isMainnet ? "mainnet.lightwalletd.com" : "testnet.lightwalletd.com", port: 9067, secure: true)
 
     var synchronizer: CombineSynchronizer
     
